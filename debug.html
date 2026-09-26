@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Naviguer debug — Tesla link formats</title>
+  <meta name="theme-color" content="#0a1628" />
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-2: #122038;
+      --blue: #3b82f6;
+      --ice: #e8f1ff;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,0.1);
+      --card: rgba(255,255,255,0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--navy);
+      color: #f7fafc;
+      min-height: 100vh;
+      line-height: 1.45;
+      padding: 16px 14px 80px;
+    }
+    .top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    h1 { font-size: 1.25rem; font-weight: 800; }
+    .back {
+      display: inline-flex; align-items: center;
+      background: var(--navy-2); border: 1px solid var(--border);
+      color: var(--ice); text-decoration: none;
+      padding: 10px 14px; border-radius: 999px; font-weight: 600; font-size: 0.9rem;
+      min-height: 44px;
+    }
+    .meta {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 14px; margin-bottom: 18px;
+      font-size: 0.9rem; color: var(--muted);
+    }
+    .meta strong { color: var(--ice); }
+    .meta code { color: #93c5fd; word-break: break-all; }
+    .ua {
+      margin-top: 8px; font-size: 0.78rem; word-break: break-all;
+      color: #64748b;
+    }
+    h2 {
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--muted); margin: 22px 0 10px;
+    }
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .item {
+      display: block;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 12px 14px;
+      color: inherit; text-decoration: none;
+      min-height: 56px;
+      -webkit-tap-highlight-color: rgba(59,130,246,0.35);
+    }
+    .item:active, .item:hover {
+      border-color: rgba(59,130,246,0.55);
+      background: rgba(30,91,184,0.18);
+    }
+    .item .label {
+      font-weight: 700; font-size: 0.95rem; color: #fff; margin-bottom: 6px;
+    }
+    .item .url {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.72rem; color: #93c5fd;
+      word-break: break-all; white-space: pre-wrap;
+    }
+    .item .note {
+      margin-top: 6px; font-size: 0.75rem; color: var(--muted);
+    }
+    .hint {
+      margin-top: 28px; font-size: 0.85rem; color: var(--muted);
+      border-top: 1px solid var(--border); padding-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div>
+      <h1>Naviguer debug</h1>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:4px">Tap each link in the Tesla browser</p>
+    </div>
+    <a class="back" href="./">← Back</a>
+  </div>
+
+  <div class="meta">
+    <div><strong>Test destination:</strong> De Polygoon (Blue Lions home)</div>
+    <div><strong>Address:</strong> Hertswegenstraat 61, 3080 Tervuren, Belgium</div>
+    <div><strong>Coords:</strong> <code>50.818568, 4.5349061</code></div>
+    <div class="ua" id="ua"></div>
+  </div>
+
+  <div id="groups"></div>
+
+  <p class="hint">
+    Note: Google no longer creates public classic <code>goo.gl/maps/…</code> short links.
+    The row below uses the live <code>maps.app.goo.gl</code> short link we have for this venue,
+    plus a classic-style path attempt. Mark which ones open Tesla native nav vs Maps in the browser.
+  </p>
+
+  <script>
+    const LAT = 50.818568;
+    const LNG = 4.5349061;
+    const ADDR = "Hertswegenstraat 61, 3080 Tervuren, Belgium";
+    const NAME = "De Polygoon";
+    const ENC_ADDR = encodeURIComponent(ADDR);
+    const ENC_NAME = encodeURIComponent(NAME);
+    const ENC_QUERY = encodeURIComponent(ADDR);
+    const PLACE_PATH = "Hertswegenstraat+61,+3080+Tervuren,+Belgium";
+    const SHORT_APP = "https://maps.app.goo.gl/xe8HcLEzneS3ZL1e9";
+    // Same slug under classic host — may 404; included for format A/B
+    const SHORT_CLASSIC_ATTEMPT = "https://goo.gl/maps/xe8HcLEzneS3ZL1e9";
+    const CID = "0x47c3d9159838ea97:0xbb99349a42772f79";
+
+    const groups = [
+      {
+        title: "Short links",
+        items: [
+          { label: "maps.app.goo.gl (current Naviguer)", url: SHORT_APP, note: "What Clara uses today" },
+          { label: "Classic goo.gl/maps (same slug attempt)", url: SHORT_CLASSIC_ATTEMPT, note: "May 404 — Google deprecated creation" },
+          { label: "goo.gl/maps with query string coords", url: "https://goo.gl/maps?q=" + LAT + "," + LNG, note: "Unlikely to resolve; format probe" },
+        ]
+      },
+      {
+        title: "Google Maps Universal (api=1)",
+        items: [
+          { label: "dir + dir_action=navigate (coords)", url: "https://www.google.com/maps/dir/?api=1&destination=" + LAT + "," + LNG + "&dir_action=navigate" },
+          { label: "dir + dir_action=navigate (address)", url: "https://www.google.com/maps/dir/?api=1&destination=" + ENC_ADDR + "&dir_action=navigate" },
+          { label: "dir destination only (coords)", url: "https://www.google.com/maps/dir/?api=1&destination=" + LAT + "," + LNG },
+          { label: "search api=1 query=address", url: "https://www.google.com/maps/search/?api=1&query=" + ENC_QUERY },
+          { label: "search api=1 query=coords", url: "https://www.google.com/maps/search/?api=1&query=" + LAT + "%2C" + LNG },
+          { label: "search api=1 query=name+address", url: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(NAME + ", " + ADDR) },
+        ]
+      },
+      {
+        title: "maps.google.com / www.google.com/maps",
+        items: [
+          { label: "maps.google.com/?q=address", url: "https://maps.google.com/?q=" + ENC_ADDR },
+          { label: "maps.google.com/?q=coords", url: "https://maps.google.com/?q=" + LAT + "," + LNG },
+          { label: "maps.google.com/maps?q=address", url: "https://maps.google.com/maps?q=" + ENC_ADDR },
+          { label: "maps.google.com/maps?q=coords", url: "https://maps.google.com/maps?q=" + LAT + "," + LNG },
+          { label: "www.google.com/maps?q=address", url: "https://www.google.com/maps?q=" + ENC_ADDR },
+          { label: "www.google.com/maps?q=coords", url: "https://www.google.com/maps?q=" + LAT + "," + LNG },
+          { label: "maps?daddr=coords", url: "https://maps.google.com/maps?daddr=" + LAT + "," + LNG },
+          { label: "maps?daddr=address", url: "https://maps.google.com/maps?daddr=" + ENC_ADDR },
+          { label: "maps?saddr=Current+Location&daddr=coords", url: "https://maps.google.com/maps?saddr=Current+Location&daddr=" + LAT + "," + LNG },
+          { label: "maps/dir/Current+Location/coords", url: "https://www.google.com/maps/dir/Current+Location/" + LAT + "," + LNG },
+          { label: "maps/dir//'coords'", url: "https://www.google.com/maps/dir//" + LAT + "," + LNG },
+        ]
+      },
+      {
+        title: "Place / pin URLs",
+        items: [
+          { label: "maps/place/…/@lat,lng,17z", url: "https://www.google.com/maps/place/" + PLACE_PATH + "/@" + LAT + "," + LNG + ",17z" },
+          { label: "maps/place/?q=place_id style coords", url: "https://www.google.com/maps/place/" + LAT + "," + LNG },
+          { label: "maps?cid=… (decimal place id)", url: "https://www.google.com/maps?cid=" + parseInt("bb99349a42772f79", 16) },
+          { label: "maps?q=place hex pair", url: "https://www.google.com/maps?q=" + encodeURIComponent(CID) },
+          { label: "ll= + q= name", url: "https://maps.google.com/maps?ll=" + LAT + "," + LNG + "&q=" + ENC_NAME },
+          { label: "center= + zoom= + q=", url: "https://www.google.com/maps/@?api=1&map_action=map&center=" + LAT + "%2C" + LNG + "&zoom=17" },
+        ]
+      },
+      {
+        title: "geo: and navigation schemes",
+        items: [
+          { label: "geo:lat,lng", url: "geo:" + LAT + "," + LNG },
+          { label: "geo:lat,lng?q=lat,lng(Name)", url: "geo:" + LAT + "," + LNG + "?q=" + LAT + "," + LNG + "(" + ENC_NAME + ")" },
+          { label: "geo:0,0?q=address", url: "geo:0,0?q=" + ENC_ADDR },
+          { label: "geo:0,0?q=lat,lng(Name)", url: "geo:0,0?q=" + LAT + "," + LNG + "(" + ENC_NAME + ")" },
+          { label: "google.navigation:q=coords", url: "google.navigation:q=" + LAT + "," + LNG },
+          { label: "google.navigation:q=address", url: "google.navigation:q=" + ENC_ADDR },
+          { label: "google.navigation:q=coords&mode=d", url: "google.navigation:q=" + LAT + "," + LNG + "&mode=d" },
+          { label: "comgooglemaps://?q=coords", url: "comgooglemaps://?q=" + LAT + "," + LNG },
+          { label: "comgooglemapsurl://…dir navigate", url: "comgooglemapsurl://www.google.com/maps/dir/?api=1&destination=" + LAT + "," + LNG + "&dir_action=navigate" },
+        ]
+      },
+      {
+        title: "Android intent:// (Chrome-style)",
+        items: [
+          { label: "intent google.navigation coords", url: "intent://navigation?q=" + LAT + "," + LNG + "#Intent;scheme=google.navigation;package=com.google.android.apps.maps;end" },
+          { label: "intent maps.google.com q=", url: "intent://maps.google.com/?q=" + LAT + "," + LNG + "#Intent;scheme=https;package=com.google.android.apps.maps;end" },
+          { label: "intent geo: coords", url: "intent://" + LAT + "," + LNG + "#Intent;scheme=geo;end" },
+        ]
+      },
+      {
+        title: "tesla:// guesses (undocumented)",
+        items: [
+          { label: "tesla://", url: "tesla://", note: "Opens phone app only in known reports" },
+          { label: "tesla://navigate?lat=&lon=", url: "tesla://navigate?lat=" + LAT + "&lon=" + LNG },
+          { label: "tesla://navigation?destination=", url: "tesla://navigation?destination=" + ENC_ADDR },
+          { label: "tesla://nav?q=", url: "tesla://nav?q=" + ENC_ADDR },
+          { label: "tesla://share?text=address", url: "tesla://share?text=" + ENC_ADDR },
+          { label: "tesla://command/navigation_request style", url: "tesla://navigation_request?text=" + ENC_ADDR },
+        ]
+      },
+      {
+        title: "Apple Maps / Waze / OSM / others",
+        items: [
+          { label: "maps://?q=address (Apple)", url: "maps://?q=" + ENC_ADDR },
+          { label: "maps://?ll=lat,lng&q=name", url: "maps://?ll=" + LAT + "," + LNG + "&q=" + ENC_NAME },
+          { label: "http://maps.apple.com/?daddr=coords", url: "http://maps.apple.com/?daddr=" + LAT + "," + LNG },
+          { label: "https://maps.apple.com/?q=address", url: "https://maps.apple.com/?q=" + ENC_ADDR },
+          { label: "waze://?ll=lat,lng&navigate=yes", url: "waze://?ll=" + LAT + "," + LNG + "&navigate=yes" },
+          { label: "https://waze.com/ul?ll=…&navigate=yes", url: "https://waze.com/ul?ll=" + LAT + "%2C" + LNG + "&navigate=yes" },
+          { label: "OpenStreetMap /#map=17/lat/lng", url: "https://www.openstreetmap.org/?mlat=" + LAT + "&mlon=" + LNG + "#map=17/" + LAT + "/" + LNG },
+          { label: "geo.admin / OSM go to coords", url: "https://www.openstreetmap.org/directions?to=" + LAT + "%2C" + LNG },
+        ]
+      },
+      {
+        title: "Plain text / share-style payloads as data URLs",
+        items: [
+          { label: "data:text/plain address + short link", url: "data:text/plain," + encodeURIComponent(NAME + "\n" + ADDR + "\n" + SHORT_APP), note: "Share-sheet style text; browser may just display it" },
+          { label: "https link with only address path (no maps host)", url: "https://clara.sitedebile.fr/debug.html#stay", note: "Control — should stay in browser" },
+        ]
+      },
+      {
+        title: "Creative / edge formats",
+        items: [
+          { label: "google.com/maps/@lat,lng,17z", url: "https://www.google.com/maps/@" + LAT + "," + LNG + ",17z" },
+          { label: "google.com/maps?q=lat+lng&navigate=yes", url: "https://www.google.com/maps?q=" + LAT + "+" + LNG + "&navigate=yes" },
+          { label: "maps.google.com/?daddr=lat,lng&directionsmode=driving", url: "https://maps.google.com/?daddr=" + LAT + "," + LNG + "&directionsmode=driving" },
+          { label: "www.google.com/maps/dir/?api=1&travelmode=driving&destination=", url: "https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=" + LAT + "," + LNG },
+          { label: "https://www.google.com/maps?ftid=… skip", url: "https://www.google.com/maps/search/" + ENC_NAME + "/@" + LAT + "," + LNG + ",17z" },
+          { label: "plus.codes style approximate", url: "https://www.google.com/maps?q=" + encodeURIComponent("https://plus.codes/9F26RG99+CX") },
+          { label: "Raw lat,lng as https://lat,lng (invalid host)", url: "https://" + LAT + "," + LNG + "/", note: "Expect fail — format probe" },
+          { label: "x-apple-maps://?daddr=", url: "x-apple-maps://?daddr=" + LAT + "," + LNG },
+          { label: "nav:// lat,lng (generic)", url: "nav://" + LAT + "," + LNG },
+        ]
+      }
+    ];
+
+    document.getElementById("ua").textContent = "User-Agent: " + navigator.userAgent;
+
+    const root = document.getElementById("groups");
+    groups.forEach((g) => {
+      const h = document.createElement("h2");
+      h.textContent = g.title + " (" + g.items.length + ")";
+      root.appendChild(h);
+      const list = document.createElement("div");
+      list.className = "list";
+      g.items.forEach((it) => {
+        const a = document.createElement("a");
+        a.className = "item";
+        a.href = it.url;
+        // No target=_blank — Tesla may only intercept same-tab navigations
+        a.rel = "noopener";
+        a.innerHTML =
+          '<div class="label"></div><div class="url"></div>' +
+          (it.note ? '<div class="note"></div>' : "");
+        a.querySelector(".label").textContent = it.label;
+        a.querySelector(".url").textContent = it.url;
+        if (it.note) a.querySelector(".note").textContent = it.note;
+        list.appendChild(a);
+      });
+      root.appendChild(list);
+    });
+  </script>
+</body>
+</html>

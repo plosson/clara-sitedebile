@@ -284,6 +284,20 @@
     }
     .nav-btn:hover { filter: brightness(1.08); text-decoration: none !important; }
 
+
+    .debug-fab {
+      position: fixed; top: 12px; right: 12px; z-index: 1000;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(15, 23, 42, 0.92); color: #e2e8f0 !important;
+      border: 1px solid rgba(255,255,255,0.18);
+      font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em;
+      text-transform: uppercase; text-decoration: none !important;
+      padding: 10px 14px; border-radius: 999px; min-height: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+      backdrop-filter: blur(8px);
+    }
+    .debug-fab:hover { color: #fff !important; border-color: rgba(59,130,246,0.6); text-decoration: none !important; }
+
     @media (max-width: 520px) {
       .match-card { padding: 12px; }
       .score { font-size: 1.25rem; }
@@ -292,6 +306,7 @@
   </style>
 </head>
 <body>
+  <a class="debug-fab" href="debug.html">Debug</a>
   <div class="wrap">
     <div class="qr-banner" id="qr-banner">
       <img src="qr-clara.png" width="512" height="512" alt="QR code vers https://clara.sitedebile.fr" />
