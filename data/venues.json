@@ -1,0 +1,429 @@
+{
+  "meta": {
+    "source": "Hockey Belgium club-details Terrains",
+    "note": "Primary outdoor facility per club. Blue Lions home forced to De Polygoon.",
+    "fetchedAt": "2026-09-26T12:20:36+0200"
+  },
+  "byClub": {
+    "Blue Lions": {
+      "clubId": "CC6VK53",
+      "city": "TERVUREN",
+      "venueName": "De Polygoon",
+      "address": "Hertswegenstraat 61, 3080 Tervuren",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Blue Lions",
+          "address": "Hertswegenstraat 61, 3080 TERVUREN"
+        },
+        {
+          "facilityId": null,
+          "name": "De Polygoon",
+          "address": "Hertswegenstraat 61, 3080 TERVUREN"
+        },
+        {
+          "facilityId": null,
+          "name": "Blue Lions Diependal",
+          "address": "Lindeboomstraat 30, 3080 TERVUREN"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VK53"
+    },
+    "Braxgata": {
+      "clubId": "CC6VJ3W",
+      "city": "ANTWERPEN-WILRIJK",
+      "venueName": "Braxgata",
+      "address": "Kapelstraat 145, 2850 BOOM",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Braxgata",
+          "address": "Kapelstraat 145, 2850 BOOM"
+        },
+        {
+          "facilityId": null,
+          "name": "Braxgata - Indoor",
+          "address": "Kapelstraat 145, 2850 BOOM"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ3W"
+    },
+    "Dragons": {
+      "clubId": "CC6VH6T",
+      "city": "BRASSCHAAT",
+      "venueName": "Dragons",
+      "address": "Sportendreef 1, 2930 BRASSCHAAT",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Dragons",
+          "address": "Sportendreef 1, 2930 BRASSCHAAT"
+        },
+        {
+          "facilityId": null,
+          "name": "De Ring",
+          "address": "Ambachtslaan 7, 2960 BRECHT"
+        },
+        {
+          "facilityId": null,
+          "name": "Gitok",
+          "address": "Vogelenzangstraat 10, 2920 KALMTHOUT"
+        },
+        {
+          "facilityId": null,
+          "name": "Sport Vlaanderen Brasschaat",
+          "address": "Bredabaan 31, 2930 BRASSCHAAT"
+        },
+        {
+          "facilityId": null,
+          "name": "Het Rooi",
+          "address": "Berchemstadionstraat 73, 2600 BERCHEM"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VH6T"
+    },
+    "Gantoise": {
+      "clubId": "CC6VF6N",
+      "city": "GENT",
+      "venueName": "Gantoise - 10",
+      "address": "Noorderlaan 10, 9000 GENT",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Gantoise - 10",
+          "address": "Noorderlaan 10, 9000 GENT"
+        },
+        {
+          "facilityId": null,
+          "name": "Gantoise",
+          "address": "Noorderlaan 25, 9000 GENT"
+        },
+        {
+          "facilityId": null,
+          "name": "Gantoise - 10 - Indoor",
+          "address": "Noorderlaan 10, 9000 GENT"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VF6N"
+    },
+    "Indiana": {
+      "clubId": "CC6VG1L",
+      "city": "DE PINTE",
+      "venueName": "Indiana",
+      "address": "Hondelestraat 13, 9840 DE PINTE",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Indiana",
+          "address": "Hondelestraat 13, 9840 DE PINTE"
+        },
+        {
+          "facilityId": null,
+          "name": "Indiana Indoor",
+          "address": "Hondelestraat 13, 9840 DE PINTE"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VG1L"
+    },
+    "Leuven": {
+      "clubId": "CC6VK1X",
+      "city": "HEVERLEE",
+      "venueName": "Leuven",
+      "address": "Hertogstraat 203, 3001 HEVERLEE",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Leuven",
+          "address": "Hertogstraat 203, 3001 HEVERLEE"
+        },
+        {
+          "facilityId": null,
+          "name": "Leuven - Indoor",
+          "address": "Hertogstraat 203, 3001 HEVERLEE"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VK1X"
+    },
+    "Lokeren": {
+      "clubId": "CC6VH1O",
+      "city": "LOKEREN",
+      "venueName": "Lokeren",
+      "address": "Heilige Geestmolenstraat 42, 9160 LOKEREN",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Lokeren",
+          "address": "Heilige Geestmolenstraat 42, 9160 LOKEREN"
+        },
+        {
+          "facilityId": null,
+          "name": "Lokeren indoor",
+          "address": "Heilige Geestmolenstraat 42, 9160 LOKEREN"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VH1O"
+    },
+    "Mechelse": {
+      "clubId": "CC6VJ05",
+      "city": "HOMBEEK",
+      "venueName": "Mechelse site KMTHC",
+      "address": "Zemstseweg 46, 2811 HOMBEEK",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Mechelse site KMTHC",
+          "address": "Zemstseweg 46, 2811 HOMBEEK"
+        },
+        {
+          "facilityId": null,
+          "name": "Mechelse site De Nekker",
+          "address": "Spuibeekstraat 19, 2800 MECHELEN"
+        },
+        {
+          "facilityId": null,
+          "name": "Mechelse Indoor",
+          "address": "Zemstseweg 46, 2811 HOMBEEK"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ05"
+    },
+    "Merode": {
+      "clubId": "CC6VK64",
+      "city": "GRIMBERGEN",
+      "venueName": "Prinsenbos Grimbergen",
+      "address": "Pastoor Wouterstraat 24, 1850 GRIMBERGEN",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Prinsenbos Grimbergen",
+          "address": "Pastoor Wouterstraat 24, 1850 GRIMBERGEN"
+        },
+        {
+          "facilityId": null,
+          "name": "Rasante - Indoor",
+          "address": "rue JF Debbecker 54, 1200 WOLUWÉ-SAINT-LAMBERT"
+        },
+        {
+          "facilityId": null,
+          "name": "Merode",
+          "address": "Populierendallaan 111, 1850 GRIMBERGEN"
+        },
+        {
+          "facilityId": null,
+          "name": "Sporthal Verbrande Brug",
+          "address": "Vaartstraat 198, 1850 GRIMBERGEN"
+        },
+        {
+          "facilityId": null,
+          "name": "Mechelse Indoor",
+          "address": "Zemstseweg 46, 2811 HOMBEEK"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VK64"
+    },
+    "Mol": {
+      "clubId": "CC6VH9W",
+      "city": "MOL",
+      "venueName": "Mol",
+      "address": "Emiel Becquaertlaan 184, 2400 MOL",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Mol",
+          "address": "Emiel Becquaertlaan 184, 2400 MOL"
+        },
+        {
+          "facilityId": null,
+          "name": "Tech. Ath. Mol",
+          "address": "Anemonenstraat 1, 2400 MOL"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VH9W"
+    },
+    "Namur": {
+      "clubId": "CC6VD3E",
+      "city": "SAINT-SERVAIS",
+      "venueName": "Namur",
+      "address": "Montagne d'Hastedon 49, 5002 SAINT-SERVAIS",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Namur",
+          "address": "Montagne d'Hastedon 49, 5002 SAINT-SERVAIS"
+        },
+        {
+          "facilityId": null,
+          "name": "Namur Indoor",
+          "address": "Montagne d'Hastedon 49, 5002 SAINT-SERVAIS"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VD3E"
+    },
+    "Old Club": {
+      "clubId": "CC6VD8J",
+      "city": "ROCOURT",
+      "venueName": "Old Club",
+      "address": "Chaussée de Tongres 292, 4000 ROCOURT",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Old Club",
+          "address": "Chaussée de Tongres 292, 4000 ROCOURT"
+        },
+        {
+          "facilityId": null,
+          "name": "Old Club Liège - Indoor",
+          "address": "Chaussée de Tongres 292, 4000 ROCOURT"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VD8J"
+    },
+    "Olympia": {
+      "clubId": "CC6VJ83",
+      "city": "ANTWERPEN",
+      "venueName": "Wilrijkse Plein",
+      "address": "Vogelzanglaan 6, 2020 ANTWERPEN",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Wilrijkse Plein",
+          "address": "Vogelzanglaan 6, 2020 ANTWERPEN"
+        },
+        {
+          "facilityId": null,
+          "name": "Braxgata - Indoor",
+          "address": "Kapelstraat 145, 2850 BOOM"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ83"
+    },
+    "Parc": {
+      "clubId": "CC6TZ87",
+      "city": "AUDERGHEM",
+      "venueName": "Parc",
+      "address": "Avenue Schaller 50, 1160 AUDERGHEM",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Parc",
+          "address": "Avenue Schaller 50, 1160 AUDERGHEM"
+        },
+        {
+          "facilityId": null,
+          "name": "3 Tilleuls",
+          "address": "Avenue Léopold Wiener 60, 1170 WATERMAEL-BOISFORT"
+        },
+        {
+          "facilityId": null,
+          "name": "De la forêt de Soignes",
+          "address": "Chaussée de Wavre 2057, 1160 AUDERGHEM"
+        },
+        {
+          "facilityId": null,
+          "name": "Gymnasium",
+          "address": "Boulevard des Invalides 214, 1160 AUDERGHEM"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6TZ87"
+    },
+    "Rix": {
+      "clubId": "CC6VC8G",
+      "city": "GENVAL",
+      "venueName": "Wavre",
+      "address": "Avenue de la Belle Voie 26, 1300 WAVRE",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Wavre",
+          "address": "Avenue de la Belle Voie 26, 1300 WAVRE"
+        },
+        {
+          "facilityId": null,
+          "name": "Rixensart",
+          "address": "Rue du Tilleul 56, 1332 GENVAL"
+        },
+        {
+          "facilityId": null,
+          "name": "Padel Events Club",
+          "address": "Rue du Riquau 3, 1435 MONT-SAINT-GUIBERT"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VC8G"
+    },
+    "Taxandria": {
+      "clubId": "CC6VJ1U",
+      "city": "OUD-TURNHOUT",
+      "venueName": "Taxandria",
+      "address": "De Hoogt 10, 2360 OUD-TURNHOUT",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Taxandria",
+          "address": "De Hoogt 10, 2360 OUD-TURNHOUT"
+        },
+        {
+          "facilityId": null,
+          "name": "De Hoogt",
+          "address": "De Hoogt 20, 2360 OUD-TURNHOUT"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ1U"
+    },
+    "Victory": {
+      "clubId": "CC6VJ2V",
+      "city": "EDEGEM",
+      "venueName": "Victory",
+      "address": "Kattenbroek 5, 2650 EDEGEM",
+      "facilityId": null,
+      "facilities": [
+        {
+          "facilityId": null,
+          "name": "Victory",
+          "address": "Kattenbroek 5, 2650 EDEGEM"
+        },
+        {
+          "facilityId": null,
+          "name": "Victory Indoor",
+          "address": "Kattenbroek 5, 2650 EDEGEM"
+        }
+      ],
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ2V"
+    }
+  },
+  "pitchPrefixToClub": {
+    "LION": "Blue Lions",
+    "BRAX": "Braxgata",
+    "DRAG": "Dragons",
+    "GANT": "Gantoise",
+    "INDI": "Indiana",
+    "LEUV": "Leuven",
+    "LOKE": "Lokeren",
+    "MECH": "Mechelse",
+    "MERO": "Merode",
+    "MOLH": "Mol",
+    "NAMU": "Namur",
+    "OLDC": "Old Club",
+    "OLYM": "Olympia",
+    "PARC": "Parc",
+    "RIXH": "Rix",
+    "TAXA": "Taxandria",
+    "VICT": "Victory",
+    "COEX": null
+  }
+}

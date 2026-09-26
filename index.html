@@ -241,6 +241,47 @@
       margin-top: 8px; line-height: 1.55;
     }
 
+
+    /* QR banner */
+    .qr-banner {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      margin: 16px 0 8px; padding: 18px 16px;
+      background: #fff; color: #0a1628;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 3px solid #0a1628;
+    }
+    .qr-banner img {
+      width: min(220px, 70vw); height: auto;
+      image-rendering: pixelated;
+      display: block;
+    }
+    .qr-banner .qr-label {
+      font-family: Outfit, sans-serif; font-weight: 700;
+      font-size: 0.95rem; text-align: center; line-height: 1.3;
+      color: #0a1628;
+    }
+
+    .match-card { cursor: pointer; transition: border-color .15s, background .15s; }
+    .match-card:hover, .match-card.open { border-color: rgba(59,130,246,0.45); background: rgba(30,91,184,0.12); }
+    .match-card .match-detail {
+      display: none; margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid var(--border); width: 100%;
+    }
+    .match-card.open .match-detail { display: block; }
+    .match-detail .venue-name { font-weight: 600; margin-bottom: 4px; }
+    .match-detail .venue-addr { color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; }
+    .nav-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--blue-bright); color: #fff !important;
+      font-weight: 700; font-size: 0.95rem;
+      padding: 12px 18px; border-radius: 999px;
+      text-decoration: none !important;
+      min-height: 44px; width: 100%;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.35);
+    }
+    .nav-btn:hover { filter: brightness(1.08); text-decoration: none !important; }
+
     @media (max-width: 520px) {
       .match-card { padding: 12px; }
       .score { font-size: 1.25rem; }
@@ -532,6 +573,79 @@
       }
     }
 
+
+    let VENUES = { byClub: {}, pitchPrefixToClub: {} };
+
+    function clubKeyFromTeamName(name) {
+      if (!name) return null;
+      const s = String(name);
+      const keys = Object.keys(VENUES.byClub || {}).sort((a,b) => b.length - a.length);
+      for (const k of keys) {
+        if (s.toLowerCase().includes(k.toLowerCase())) return k;
+      }
+      return null;
+    }
+
+    function resolveVenue(match) {
+      const homeName = match.home || (match.usHome ? "Blue Lions" : match.opponent);
+      let clubKey = null;
+      if (match.pitch && VENUES.pitchPrefixToClub) {
+        const pref = String(match.pitch).split(/\s+/)[0].toUpperCase();
+        clubKey = VENUES.pitchPrefixToClub[pref] || null;
+      }
+      if (!clubKey) clubKey = clubKeyFromTeamName(homeName);
+      if (!clubKey && match.usHome) clubKey = "Blue Lions";
+      const info = (VENUES.byClub && clubKey && VENUES.byClub[clubKey]) || null;
+      if (info) {
+        return {
+          name: info.venueName || clubKey,
+          address: info.address || "",
+          query: info.address || (info.venueName + ", " + (info.city || "")),
+          known: !!info.address
+        };
+      }
+      const fallback = (homeName || "terrain").replace(/\s*U\d+[A-Z]?-\d+\s*$/i, "").trim();
+      return { name: fallback, address: "", query: fallback + " hockey", known: false };
+    }
+
+    function mapsUrl(query) {
+      return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(query);
+    }
+
+    function matchDetailHtml(match) {
+      const v = resolveVenue(match);
+      const addrLine = v.address
+        ? escapeHtml(v.address)
+        : (v.known ? "" : "Adresse précise inconnue — navigation via le nom du club.");
+      return `
+          <div class="match-detail">
+            <div class="venue-name">${escapeHtml(v.name)}</div>
+            <div class="venue-addr">${addrLine}</div>
+            <a class="nav-btn" href="${mapsUrl(v.query)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+              Naviguer
+            </a>
+          </div>`;
+    }
+
+    function bindMatchCards(container) {
+      container.querySelectorAll(".match-card").forEach((card) => {
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-expanded", "false");
+        const toggle = () => {
+          const open = card.classList.toggle("open");
+          card.setAttribute("aria-expanded", open ? "true" : "false");
+        };
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("a")) return;
+          toggle();
+        });
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+        });
+      });
+    }
+
     function resultLabel(r) {
       if (r.status === "cancelled") return { cls: "C", text: "Annulé" };
       if (r.result === "W") return { cls: "W", text: "Victoire" };
@@ -561,8 +675,10 @@
           <div class="score-box">
             <div class="kickoff">${escapeHtml(f.time || "—")}</div>
           </div>
+          ${matchDetailHtml(f)}
         </article>
       `).join("");
+      bindMatchCards(el);
     }
 
     function renderResults(list) {
@@ -591,8 +707,10 @@
             <div class="score">${score}</div>
             <span class="result-tag ${tag.cls}">${tag.text}</span>
           </div>
+          ${matchDetailHtml(r)}
         </article>`;
       }).join("");
+      bindMatchCards(el);
     }
 
     function renderStandings(list) {
@@ -649,9 +767,12 @@
 
     $("refresh-btn").addEventListener("click", liveRefresh);
 
-    fetch("data/blue-lions-u19g.json")
-      .then((r) => r.json())
-      .then((d) => {
+    Promise.all([
+      fetch("data/blue-lions-u19g.json").then((r) => r.json()),
+      fetch("data/venues.json").then((r) => r.json()).catch(() => ({ byClub: {}, pitchPrefixToClub: {} }))
+    ])
+      .then(([d, venues]) => {
+        VENUES = venues || { byClub: {}, pitchPrefixToClub: {} };
         DATA = d;
         current = d.defaultTeam || "u19g1";
         render();
