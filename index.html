@@ -631,13 +631,17 @@
       return { name: fallback, address: "", query: fallback + " hockey", mapsShortUrl: "", known: false };
     }
 
-    /** Prefer SHORT Maps link (maps.app.goo.gl / goo.gl/maps). Must be a native <a> navigation — no location.assign. */
+    /**
+     * Prefer maps.app.goo.gl short link (only short format Google still creates).
+     * Research 2026-09-26: no public evidence that ANY href hands off from Tesla
+     * in-car browser to native nav — keep real <a href>, no location.assign,
+     * so we do not break a hypothetical intercept while testing via debug.html.
+     */
     function mapsUrl(venueOrQuery) {
       if (venueOrQuery && typeof venueOrQuery === "object") {
         if (venueOrQuery.mapsShortUrl) return venueOrQuery.mapsShortUrl;
         venueOrQuery = venueOrQuery.query || venueOrQuery.address || "";
       }
-      // Fallback only if short link missing — long URLs do not trigger Tesla nav prompt
       return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(venueOrQuery || "");
     }
 
@@ -664,7 +668,7 @@
           card.setAttribute("aria-expanded", open ? "true" : "false");
         };
         card.addEventListener("click", (e) => {
-          // Do NOT preventDefault on Naviguer — Tesla native nav only hooks real link navigations
+          // Do NOT preventDefault on Naviguer — keep real <a> navigation (intercept unproven)
           if (e.target.closest("a.nav-btn")) return;
           if (e.target.closest("a")) return;
           toggle();
