@@ -637,7 +637,7 @@
           <div class="match-detail">
             <div class="venue-name">${escapeHtml(v.name)}</div>
             <div class="venue-addr">${addrLine}</div>
-            <a class="nav-btn" href="${mapsUrl(v)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <a class="nav-btn" href="${mapsUrl(v)}" rel="noopener" onclick="event.stopPropagation();">
               Naviguer
             </a>
           </div>`;
@@ -653,6 +653,14 @@
           card.setAttribute("aria-expanded", open ? "true" : "false");
         };
         card.addEventListener("click", (e) => {
+          const a = e.target.closest("a.nav-btn");
+          if (a) {
+            e.preventDefault();
+            e.stopPropagation();
+            const href = a.getAttribute("href");
+            if (href) location.assign(href);
+            return;
+          }
           if (e.target.closest("a")) return;
           toggle();
         });
@@ -768,6 +776,7 @@
       renderFixtures(team.fixtures || []);
       renderResults(team.results || []);
       renderStandings(team.standings || []);
+      showQrOnlyInTesla();
     }
 
     document.querySelectorAll(".tab").forEach((btn) => {
@@ -783,13 +792,28 @@
 
     $("refresh-btn").addEventListener("click", liveRefresh);
 
-    (function showQrOnlyInTesla() {
+    function isTeslaBrowser() {
+      try {
+        const ua = String(navigator.userAgent || navigator.vendor || "");
+        const params = new URLSearchParams(location.search || "");
+        if (params.get("forceTeslaQr") === "1") return true;
+        // Official builds include "Tesla/"; also catch Qt car browser variants.
+        if (/tesla/i.test(ua)) return true;
+        if (/QtCarBrowser|TeslaBrowser/i.test(ua)) return true;
+        // Some MCU builds: Linux x86_64 Chromium without Mobile, with QtWebEngine token
+        if (/QtWebEngine/i.test(ua) && /Linux/i.test(ua) && !/Android|iPhone|iPad|Mobile/i.test(ua)) return true;
+        return false;
+      } catch (e) { return false; }
+    }
+
+    function showQrOnlyInTesla() {
       const el = document.getElementById("qr-banner");
       if (!el) return;
-      const ua = String(navigator.userAgent || "");
-      if (/tesla/i.test(ua)) el.classList.add("is-tesla");
+      if (isTeslaBrowser()) el.classList.add("is-tesla");
       else el.classList.remove("is-tesla");
-    })();
+    }
+    showQrOnlyInTesla();
+    document.addEventListener("DOMContentLoaded", showQrOnlyInTesla);
 
     Promise.all([
       fetch("data/blue-lions-u19g.json").then((r) => r.json()),
