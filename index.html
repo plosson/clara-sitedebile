@@ -244,12 +244,16 @@
 
     /* QR banner */
     .qr-banner {
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      display: none; /* Tesla in-car browser only — revealed by JS */
+      flex-direction: column; align-items: center; gap: 10px;
       margin: 16px 0 8px; padding: 18px 16px;
       background: #fff; color: #0a1628;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       border: 3px solid #0a1628;
+    }
+    .qr-banner.is-tesla {
+      display: flex;
     }
     .qr-banner img {
       width: min(220px, 70vw); height: auto;
@@ -606,15 +610,22 @@
           name: info.venueName || clubKey,
           address: info.address || "",
           query: info.address || (info.venueName + ", " + (info.city || "")),
+          mapsShortUrl: info.mapsShortUrl || "",
           known: !!info.address
         };
       }
       const fallback = (homeName || "terrain").replace(/\s*U\d+[A-Z]?-\d+\s*$/i, "").trim();
-      return { name: fallback, address: "", query: fallback + " hockey", known: false };
+      return { name: fallback, address: "", query: fallback + " hockey", mapsShortUrl: "", known: false };
     }
 
-    function mapsUrl(query) {
-      return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(query);
+    /** Prefer Google Maps SHORT link (maps.app.goo.gl) so Tesla browser offers "Open in Tesla Navigation". */
+    function mapsUrl(venueOrQuery) {
+      if (venueOrQuery && typeof venueOrQuery === "object") {
+        if (venueOrQuery.mapsShortUrl) return venueOrQuery.mapsShortUrl;
+        venueOrQuery = venueOrQuery.query || venueOrQuery.address || "";
+      }
+      // Fallback only if short link missing — long URLs do not trigger Tesla nav prompt
+      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(venueOrQuery || "");
     }
 
     function matchDetailHtml(match) {
@@ -626,7 +637,7 @@
           <div class="match-detail">
             <div class="venue-name">${escapeHtml(v.name)}</div>
             <div class="venue-addr">${addrLine}</div>
-            <a class="nav-btn" href="${mapsUrl(v.query)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <a class="nav-btn" href="${mapsUrl(v)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
               Naviguer
             </a>
           </div>`;
@@ -774,6 +785,15 @@
 
     Promise.all([
       fetch("data/blue-lions-u19g.json").then((r) => r.json()),
+      // QR banner: Tesla in-car browser only (avoid flash on phones — CSS defaults to display:none)
+      (function showQrOnlyInTesla() {
+        const el = document.getElementById("qr-banner");
+        if (!el) return;
+        const ua = String(navigator.userAgent || "");
+        if (/tesla/i.test(ua)) el.classList.add("is-tesla");
+        else el.classList.remove("is-tesla");
+      })();
+
       fetch("data/venues.json").then((r) => r.json()).catch(() => ({ byClub: {}, pitchPrefixToClub: {} }))
     ])
       .then(([d, venues]) => {

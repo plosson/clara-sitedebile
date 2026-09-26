@@ -2,7 +2,8 @@
   "meta": {
     "source": "Hockey Belgium club-details Terrains",
     "note": "Primary outdoor facility per club. Blue Lions home forced to De Polygoon.",
-    "fetchedAt": "2026-09-26T12:20:36+0200"
+    "fetchedAt": "2026-09-26T12:20:36+0200",
+    "mapsShortLinksAt": "2026-09-26T12:32:11+02:00"
   },
   "byClub": {
     "Blue Lions": {
@@ -28,7 +29,8 @@
           "address": "Lindeboomstraat 30, 3080 TERVUREN"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VK53"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VK53",
+      "mapsShortUrl": "https://maps.app.goo.gl/xe8HcLEzneS3ZL1e9"
     },
     "Braxgata": {
       "clubId": "CC6VJ3W",
@@ -48,7 +50,8 @@
           "address": "Kapelstraat 145, 2850 BOOM"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VJ3W"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ3W",
+      "mapsShortUrl": "https://maps.app.goo.gl/m9NjEGZ4ndaFTycE7"
     },
     "Dragons": {
       "clubId": "CC6VH6T",
@@ -83,7 +86,8 @@
           "address": "Berchemstadionstraat 73, 2600 BERCHEM"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VH6T"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VH6T",
+      "mapsShortUrl": "https://maps.app.goo.gl/15Lcws4nPv9oApMq5"
     },
     "Gantoise": {
       "clubId": "CC6VF6N",
@@ -108,7 +112,8 @@
           "address": "Noorderlaan 10, 9000 GENT"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VF6N"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VF6N",
+      "mapsShortUrl": "https://maps.app.goo.gl/WdkyzAUXvqBSQwd4A"
     },
     "Indiana": {
       "clubId": "CC6VG1L",
@@ -128,7 +133,8 @@
           "address": "Hondelestraat 13, 9840 DE PINTE"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VG1L"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VG1L",
+      "mapsShortUrl": "https://maps.app.goo.gl/K7TG6W1f4sb9MNZb8"
     },
     "Leuven": {
       "clubId": "CC6VK1X",
@@ -148,7 +154,8 @@
           "address": "Hertogstraat 203, 3001 HEVERLEE"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VK1X"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VK1X",
+      "mapsShortUrl": "https://maps.app.goo.gl/Lnybu1ThoK6Sp3wB7"
     },
     "Lokeren": {
       "clubId": "CC6VH1O",
@@ -168,7 +175,8 @@
           "address": "Heilige Geestmolenstraat 42, 9160 LOKEREN"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VH1O"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VH1O",
+      "mapsShortUrl": "https://maps.app.goo.gl/7aeqiJrhRCVv2daN8"
     },
     "Mechelse": {
       "clubId": "CC6VJ05",
@@ -193,19 +201,20 @@
           "address": "Zemstseweg 46, 2811 HOMBEEK"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VJ05"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ05",
+      "mapsShortUrl": "https://maps.app.goo.gl/g6RCRNnDX2qJnfRH8"
     },
     "Merode": {
       "clubId": "CC6VK64",
       "city": "GRIMBERGEN",
       "venueName": "Prinsenbos Grimbergen",
-      "address": "Pastoor Wouterstraat 24, 1850 GRIMBERGEN",
+      "address": "Pastoor Woutersstraat 24, 1850 GRIMBERGEN",
       "facilityId": null,
       "facilities": [
         {
           "facilityId": null,
           "name": "Prinsenbos Grimbergen",
-          "address": "Pastoor Wouterstraat 24, 1850 GRIMBERGEN"
+          "address": "Pastoor Woutersstraat 24, 1850 GRIMBERGEN"
         },
         {
           "facilityId": null,
@@ -228,7 +237,8 @@
           "address": "Zemstseweg 46, 2811 HOMBEEK"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VK64"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VK64",
+      "mapsShortUrl": "https://maps.app.goo.gl/3ViXmRHfgHTGVcmQ9"
     },
     "Mol": {
       "clubId": "CC6VH9W",
@@ -248,7 +258,8 @@
           "address": "Anemonenstraat 1, 2400 MOL"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VH9W"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VH9W",
+      "mapsShortUrl": "https://maps.app.goo.gl/8MPShtX6UNCPQtan9"
     },
     "Namur": {
       "clubId": "CC6VD3E",
@@ -268,7 +279,8 @@
           "address": "Montagne d'Hastedon 49, 5002 SAINT-SERVAIS"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VD3E"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VD3E",
+      "mapsShortUrl": "https://maps.app.goo.gl/UPAeMAqidH7S77dv8"
     },
     "Old Club": {
       "clubId": "CC6VD8J",
@@ -288,7 +300,8 @@
           "address": "Chaussée de Tongres 292, 4000 ROCOURT"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VD8J"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VD8J",
+      "mapsShortUrl": "https://maps.app.goo.gl/TzkicSm57XBKztY5A"
     },
     "Olympia": {
       "clubId": "CC6VJ83",
@@ -308,7 +321,8 @@
           "address": "Kapelstraat 145, 2850 BOOM"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VJ83"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ83",
+      "mapsShortUrl": "https://maps.app.goo.gl/h3KBJPLLXFn2K3kF6"
     },
     "Parc": {
       "clubId": "CC6TZ87",
@@ -338,7 +352,8 @@
           "address": "Boulevard des Invalides 214, 1160 AUDERGHEM"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6TZ87"
+      "source": "https://hockey.be/fr/club-details/?id=CC6TZ87",
+      "mapsShortUrl": "https://maps.app.goo.gl/oM6N7FYfKKG27hsd8"
     },
     "Rix": {
       "clubId": "CC6VC8G",
@@ -363,7 +378,8 @@
           "address": "Rue du Riquau 3, 1435 MONT-SAINT-GUIBERT"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VC8G"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VC8G",
+      "mapsShortUrl": "https://maps.app.goo.gl/mRGXVvQSQXr4UKNcA"
     },
     "Taxandria": {
       "clubId": "CC6VJ1U",
@@ -383,7 +399,8 @@
           "address": "De Hoogt 20, 2360 OUD-TURNHOUT"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VJ1U"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ1U",
+      "mapsShortUrl": "https://maps.app.goo.gl/gP6FXigyU2XsXyaD6"
     },
     "Victory": {
       "clubId": "CC6VJ2V",
@@ -403,7 +420,8 @@
           "address": "Kattenbroek 5, 2650 EDEGEM"
         }
       ],
-      "source": "https://hockey.be/fr/club-details/?id=CC6VJ2V"
+      "source": "https://hockey.be/fr/club-details/?id=CC6VJ2V",
+      "mapsShortUrl": "https://maps.app.goo.gl/vvM6Ft51nXDrdfY17"
     }
   },
   "pitchPrefixToClub": {
