@@ -6,6 +6,24 @@
   <title>Blue Lions U19 Filles — Résultats & Classement</title>
   <meta name="description" content="Résultats en direct, calendrier et classement des Blue Lions U19 Filles (Tervuren) — Hockey Belgium." />
   <meta name="theme-color" content="#0a1628" />
+  <script id="clara-tesla-detect">
+  (function () {
+    try {
+      var ua = String(navigator.userAgent || navigator.vendor || "");
+      var q = "";
+      try { q = String(location.search || ""); } catch (e) {}
+      var force = /(?:\?|&)(?:forceTeslaQr|car)=1(?:&|$)/.test(q);
+      var isTesla = force || /tesla/i.test(ua) || /QtCarBrowser|TeslaBrowser/i.test(ua)
+        || (/QtWebEngine/i.test(ua) && /Linux/i.test(ua) && !/Android|iPhone|iPad|Mobile/i.test(ua));
+      if (isTesla) document.documentElement.classList.add("tesla");
+      try {
+        if (force) localStorage.setItem("claraTeslaMode", "1");
+        if (localStorage.getItem("claraTeslaMode") === "1") document.documentElement.classList.add("tesla");
+      } catch (e) {}
+    } catch (e) {}
+  })();
+  </script>
+
   <link rel="icon" href="logo-bluelions.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -244,7 +262,7 @@
 
     /* QR banner */
     .qr-banner {
-      display: none; /* Tesla in-car browser only — revealed by JS */
+      display: none; /* Tesla in-car only — html.tesla or .is-tesla */
       flex-direction: column; align-items: center; gap: 10px;
       margin: 16px 0 8px; padding: 18px 16px;
       background: #fff; color: #0a1628;
@@ -252,8 +270,9 @@
       box-shadow: var(--shadow);
       border: 3px solid #0a1628;
     }
+    html.tesla .qr-banner,
     .qr-banner.is-tesla {
-      display: flex;
+      display: flex !important;
     }
     .qr-banner img {
       width: min(220px, 70vw); height: auto;
@@ -618,7 +637,7 @@
       return { name: fallback, address: "", query: fallback + " hockey", mapsShortUrl: "", known: false };
     }
 
-    /** Prefer Google Maps SHORT link (maps.app.goo.gl) so Tesla browser offers "Open in Tesla Navigation". */
+    /** Prefer SHORT Maps link (maps.app.goo.gl / goo.gl/maps). Must be a native <a> navigation — no location.assign. */
     function mapsUrl(venueOrQuery) {
       if (venueOrQuery && typeof venueOrQuery === "object") {
         if (venueOrQuery.mapsShortUrl) return venueOrQuery.mapsShortUrl;
@@ -637,9 +656,7 @@
           <div class="match-detail">
             <div class="venue-name">${escapeHtml(v.name)}</div>
             <div class="venue-addr">${addrLine}</div>
-            <a class="nav-btn" href="${mapsUrl(v)}" rel="noopener" onclick="event.stopPropagation();">
-              Naviguer
-            </a>
+            <a class="nav-btn" href="${mapsUrl(v)}" onclick="event.stopPropagation()">Naviguer</a>
           </div>`;
     }
 
@@ -653,14 +670,8 @@
           card.setAttribute("aria-expanded", open ? "true" : "false");
         };
         card.addEventListener("click", (e) => {
-          const a = e.target.closest("a.nav-btn");
-          if (a) {
-            e.preventDefault();
-            e.stopPropagation();
-            const href = a.getAttribute("href");
-            if (href) location.assign(href);
-            return;
-          }
+          // Do NOT preventDefault on Naviguer — Tesla native nav only hooks real link navigations
+          if (e.target.closest("a.nav-btn")) return;
           if (e.target.closest("a")) return;
           toggle();
         });
@@ -794,13 +805,16 @@
 
     function isTeslaBrowser() {
       try {
+        if (document.documentElement.classList.contains("tesla")) return true;
         const ua = String(navigator.userAgent || navigator.vendor || "");
         const params = new URLSearchParams(location.search || "");
-        if (params.get("forceTeslaQr") === "1") return true;
-        // Official builds include "Tesla/"; also catch Qt car browser variants.
+        if (params.get("forceTeslaQr") === "1" || params.get("car") === "1") {
+          try { localStorage.setItem("claraTeslaMode", "1"); } catch (e) {}
+          return true;
+        }
+        try { if (localStorage.getItem("claraTeslaMode") === "1") return true; } catch (e) {}
         if (/tesla/i.test(ua)) return true;
         if (/QtCarBrowser|TeslaBrowser/i.test(ua)) return true;
-        // Some MCU builds: Linux x86_64 Chromium without Mobile, with QtWebEngine token
         if (/QtWebEngine/i.test(ua) && /Linux/i.test(ua) && !/Android|iPhone|iPad|Mobile/i.test(ua)) return true;
         return false;
       } catch (e) { return false; }
@@ -808,8 +822,11 @@
 
     function showQrOnlyInTesla() {
       const el = document.getElementById("qr-banner");
+      const on = isTeslaBrowser();
+      if (on) document.documentElement.classList.add("tesla");
+      else document.documentElement.classList.remove("tesla");
       if (!el) return;
-      if (isTeslaBrowser()) el.classList.add("is-tesla");
+      if (on) el.classList.add("is-tesla");
       else el.classList.remove("is-tesla");
     }
     showQrOnlyInTesla();
