@@ -6,23 +6,6 @@
   <title>Blue Lions U19 Filles — Résultats & Classement</title>
   <meta name="description" content="Résultats en direct, calendrier et classement des Blue Lions U19 Filles (Tervuren) — Hockey Belgium." />
   <meta name="theme-color" content="#0a1628" />
-  <script id="clara-tesla-detect">
-  (function () {
-    try {
-      var ua = String(navigator.userAgent || navigator.vendor || "");
-      var q = "";
-      try { q = String(location.search || ""); } catch (e) {}
-      var force = /(?:\?|&)(?:forceTeslaQr|car)=1(?:&|$)/.test(q);
-      var isTesla = force || /tesla/i.test(ua) || /QtCarBrowser|TeslaBrowser/i.test(ua)
-        || (/QtWebEngine/i.test(ua) && /Linux/i.test(ua) && !/Android|iPhone|iPad|Mobile/i.test(ua));
-      if (isTesla) document.documentElement.classList.add("tesla");
-      try {
-        if (force) localStorage.setItem("claraTeslaMode", "1");
-        if (localStorage.getItem("claraTeslaMode") === "1") document.documentElement.classList.add("tesla");
-      } catch (e) {}
-    } catch (e) {}
-  })();
-  </script>
 
   <link rel="icon" href="logo-bluelions.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -260,28 +243,24 @@
     }
 
 
-    /* QR banner */
+    /* QR banner — always visible */
     .qr-banner {
-      display: none; /* Tesla in-car only — html.tesla or .is-tesla */
-      flex-direction: column; align-items: center; gap: 10px;
-      margin: 16px 0 8px; padding: 18px 16px;
+      display: flex;
+      flex-direction: column; align-items: center; gap: 8px;
+      margin: 12px 0 8px; padding: 12px 14px;
       background: #fff; color: #0a1628;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       border: 3px solid #0a1628;
     }
-    html.tesla .qr-banner,
-    .qr-banner.is-tesla {
-      display: flex !important;
-    }
     .qr-banner img {
-      width: min(220px, 70vw); height: auto;
+      width: min(140px, 42vw); height: auto;
       image-rendering: pixelated;
       display: block;
     }
     .qr-banner .qr-label {
       font-family: Outfit, sans-serif; font-weight: 700;
-      font-size: 0.95rem; text-align: center; line-height: 1.3;
+      font-size: 0.85rem; text-align: center; line-height: 1.3;
       color: #0a1628;
     }
 
@@ -787,7 +766,6 @@
       renderFixtures(team.fixtures || []);
       renderResults(team.results || []);
       renderStandings(team.standings || []);
-      showQrOnlyInTesla();
     }
 
     document.querySelectorAll(".tab").forEach((btn) => {
@@ -802,35 +780,6 @@
     });
 
     $("refresh-btn").addEventListener("click", liveRefresh);
-
-    function isTeslaBrowser() {
-      try {
-        if (document.documentElement.classList.contains("tesla")) return true;
-        const ua = String(navigator.userAgent || navigator.vendor || "");
-        const params = new URLSearchParams(location.search || "");
-        if (params.get("forceTeslaQr") === "1" || params.get("car") === "1") {
-          try { localStorage.setItem("claraTeslaMode", "1"); } catch (e) {}
-          return true;
-        }
-        try { if (localStorage.getItem("claraTeslaMode") === "1") return true; } catch (e) {}
-        if (/tesla/i.test(ua)) return true;
-        if (/QtCarBrowser|TeslaBrowser/i.test(ua)) return true;
-        if (/QtWebEngine/i.test(ua) && /Linux/i.test(ua) && !/Android|iPhone|iPad|Mobile/i.test(ua)) return true;
-        return false;
-      } catch (e) { return false; }
-    }
-
-    function showQrOnlyInTesla() {
-      const el = document.getElementById("qr-banner");
-      const on = isTeslaBrowser();
-      if (on) document.documentElement.classList.add("tesla");
-      else document.documentElement.classList.remove("tesla");
-      if (!el) return;
-      if (on) el.classList.add("is-tesla");
-      else el.classList.remove("is-tesla");
-    }
-    showQrOnlyInTesla();
-    document.addEventListener("DOMContentLoaded", showQrOnlyInTesla);
 
     Promise.all([
       fetch("data/blue-lions-u19g.json").then((r) => r.json()),
