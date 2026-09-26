@@ -1,541 +1,671 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0f">
-<meta name="description" content="Clara — vibes, playlists & neon energy. TikTok-style feed for friends.">
-<title>Clara · vibes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #07070c;
-    --bg-elev: rgba(18, 18, 28, 0.72);
-    --text: #f4f4f8;
-    --muted: #a0a0b8;
-    --pink: #ff2d95;
-    --cyan: #00f0ff;
-    --violet: #8b5cf6;
-    --lime: #c8ff3d;
-    --glass: rgba(255, 255, 255, 0.06);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --radius: 20px;
-    --safe-b: env(safe-area-inset-bottom, 0px);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: "Outfit", system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100dvh;
-    overflow-x: hidden;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Ambient blobs */
-  .blobs {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
-  }
-  .blob {
-    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45;
-    animation: float 18s ease-in-out infinite;
-  }
-  .blob.a { width: 420px; height: 420px; background: var(--pink); top: -80px; left: -100px; }
-  .blob.b { width: 380px; height: 380px; background: var(--cyan); top: 30%; right: -120px; animation-delay: -6s; opacity: 0.3; }
-  .blob.c { width: 500px; height: 500px; background: var(--violet); bottom: -150px; left: 20%; animation-delay: -12s; opacity: 0.35; }
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(40px, 30px) scale(1.08); }
-    66% { transform: translate(-30px, 50px) scale(0.95); }
-  }
-
-  .noise {
-    position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  .wrap {
-    position: relative; z-index: 2;
-    max-width: 480px; margin: 0 auto;
-    padding: 0 16px calc(32px + var(--safe-b));
-  }
-  @media (min-width: 900px) {
-    .wrap { max-width: 1100px; padding: 0 32px 48px; }
-  }
-
-  /* Nav */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 0;
-    backdrop-filter: blur(16px);
-    background: linear-gradient(180deg, rgba(7,7,12,0.92), rgba(7,7,12,0.6) 70%, transparent);
-    margin: 0 -16px; padding-left: 16px; padding-right: 16px;
-  }
-  @media (min-width: 900px) { nav { margin: 0 -32px; padding-left: 32px; padding-right: 32px; } }
-
-  .logo {
-    font-family: "Syne", sans-serif;
-    font-weight: 800; font-size: 1.35rem; letter-spacing: -0.03em;
-    background: linear-gradient(135deg, var(--pink), var(--cyan));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: 0.8rem; font-weight: 600;
-    padding: 8px 12px; border-radius: 999px; transition: color .2s, background .2s;
-  }
-  .nav-links a:hover, .nav-links a:focus-visible {
-    color: var(--text); background: var(--glass); outline: none;
-  }
-
-  /* Hero */
-  .hero {
-    padding: 28px 0 40px;
-    text-align: center;
-  }
-  @media (min-width: 900px) {
-    .hero {
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
-      text-align: left; padding: 48px 0 56px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blue Lions U19 Filles — Résultats & Classement</title>
+  <meta name="description" content="Résultats en direct, calendrier et classement des Blue Lions U19 Filles (Tervuren) — Hockey Belgium." />
+  <meta name="theme-color" content="#0a1628" />
+  <link rel="icon" href="logo-bluelions.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-2: #122038;
+      --navy-3: #1a2d4a;
+      --blue: #1e5bb8;
+      --blue-bright: #3b82f6;
+      --blue-soft: #60a5fa;
+      --ice: #e8f1ff;
+      --white: #f7fafc;
+      --muted: #94a3b8;
+      --win: #10b981;
+      --loss: #ef4444;
+      --draw: #f59e0b;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --radius: 16px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.35);
     }
-  }
-
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--lime);
-    background: rgba(200, 255, 61, 0.1);
-    border: 1px solid rgba(200, 255, 61, 0.25);
-    padding: 6px 12px; border-radius: 999px; margin-bottom: 16px;
-  }
-  .badge::before {
-    content: ""; width: 7px; height: 7px; border-radius: 50%;
-    background: var(--lime); box-shadow: 0 0 10px var(--lime);
-    animation: pulse 1.6s ease-in-out infinite;
-  }
-  @keyframes pulse { 50% { opacity: 0.4; transform: scale(0.85); } }
-
-  h1 {
-    font-family: "Syne", sans-serif;
-    font-weight: 800; font-size: clamp(2.6rem, 10vw, 4.2rem);
-    letter-spacing: -0.04em; line-height: 1.05;
-    margin-bottom: 14px;
-  }
-  h1 .grad {
-    background: linear-gradient(120deg, var(--pink) 0%, var(--violet) 45%, var(--cyan) 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero p {
-    color: var(--muted); font-size: 1.05rem; max-width: 36ch;
-    margin: 0 auto 24px;
-  }
-  @media (min-width: 900px) { .hero p { margin: 0 0 28px; } }
-
-  .cta-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  @media (min-width: 900px) { .cta-row { justify-content: flex-start; } }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: inherit; font-weight: 700; font-size: 0.9rem;
-    padding: 12px 20px; border-radius: 999px; border: none; cursor: pointer;
-    text-decoration: none; transition: transform .15s, box-shadow .2s, background .2s;
-  }
-  .btn:active { transform: scale(0.97); }
-  .btn-primary {
-    color: #0a0a0f;
-    background: linear-gradient(135deg, var(--pink), var(--violet));
-    box-shadow: 0 8px 28px rgba(255, 45, 149, 0.35);
-  }
-  .btn-primary:hover { box-shadow: 0 10px 36px rgba(255, 45, 149, 0.5); }
-  .btn-ghost {
-    color: var(--text);
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-  }
-  .btn-ghost:hover { background: rgba(255,255,255,0.1); }
-
-  .hero-card {
-    margin-top: 28px;
-    background: var(--bg-elev);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
-    backdrop-filter: blur(20px);
-    padding: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-  @media (min-width: 900px) { .hero-card { margin-top: 0; } }
-
-  .avatar {
-    width: 72px; height: 72px; border-radius: 24px;
-    background: linear-gradient(145deg, var(--pink), var(--cyan));
-    display: grid; place-items: center;
-    font-family: "Syne", sans-serif; font-weight: 800; font-size: 1.8rem; color: #fff;
-    margin: 0 auto 12px;
-    box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 12px 40px rgba(255,45,149,0.4);
-  }
-  @media (min-width: 900px) { .avatar { margin: 0 0 12px; } }
-
-  .hero-card h2 { font-size: 1.25rem; margin-bottom: 4px; }
-  .hero-card .tag { color: var(--cyan); font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
-  .stats {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
-    margin-top: 16px; padding-top: 16px;
-    border-top: 1px solid var(--glass-border);
-  }
-  .stat { text-align: center; }
-  .stat strong {
-    display: block; font-family: "Syne", sans-serif; font-size: 1.15rem;
-  }
-  .stat span { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-
-  /* Sections */
-  section { padding: 36px 0; }
-  .section-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 12px; margin-bottom: 18px; flex-wrap: wrap;
-  }
-  .section-head h2 {
-    font-family: "Syne", sans-serif; font-weight: 800; font-size: 1.5rem;
-    letter-spacing: -0.02em;
-  }
-  .section-head .hint {
-    font-size: 0.8rem; color: var(--muted); font-weight: 600;
-  }
-
-  /* Video feed — vertical TikTok-style cards */
-  .feed {
-    display: flex; gap: 14px;
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    padding-bottom: 12px; margin: 0 -16px; padding-left: 16px; padding-right: 16px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin; scrollbar-color: var(--violet) transparent;
-  }
-  @media (min-width: 900px) {
-    .feed {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      overflow: visible; margin: 0; padding: 0;
-      scroll-snap-type: none;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.5;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(30,91,184,0.45), transparent),
+        radial-gradient(ellipse 40% 30% at 100% 50%, rgba(59,130,246,0.08), transparent);
     }
-  }
+    a { color: var(--blue-soft); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-  .vibe-card {
-    flex: 0 0 72vw; max-width: 280px;
-    scroll-snap-align: center;
-    position: relative;
-    border-radius: 18px; overflow: hidden;
-    aspect-ratio: 9 / 16;
-    background: #111;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.45);
-    transition: transform .25s, box-shadow .25s;
-  }
-  @media (min-width: 900px) {
-    .vibe-card { flex: none; max-width: none; width: 100%; }
-    .vibe-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(139, 92, 246, 0.25); }
-  }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px 64px; }
 
-  .vibe-card video {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-  .vibe-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.85) 100%);
-    pointer-events: none;
-  }
-  .vibe-meta {
-    position: absolute; left: 12px; right: 12px; bottom: 14px; z-index: 2;
-  }
-  .vibe-meta .chip {
-    display: inline-block; font-size: 0.65rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.05em;
-    color: #0a0a0f; background: var(--lime);
-    padding: 3px 8px; border-radius: 6px; margin-bottom: 6px;
-  }
-  .vibe-meta h3 { font-size: 0.95rem; font-weight: 700; }
-  .vibe-meta p { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+    /* Header */
+    header.hero {
+      padding: 28px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .hero-top {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .logo {
+      width: 64px; height: 64px; border-radius: 14px;
+      background: var(--navy-3); border: 1px solid var(--border);
+      object-fit: contain; padding: 6px;
+      box-shadow: var(--shadow);
+    }
+    .hero-text h1 {
+      font-family: Outfit, sans-serif;
+      font-weight: 800; font-size: clamp(1.35rem, 4vw, 1.85rem);
+      letter-spacing: -0.02em; line-height: 1.15;
+    }
+    .hero-text h1 span { color: var(--blue-soft); }
+    .hero-text .sub {
+      color: var(--muted); font-size: 0.92rem; margin-top: 4px;
+    }
+    .badges {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 999px; padding: 5px 12px; font-size: 0.78rem;
+      color: var(--ice); font-weight: 500;
+    }
+    .badge .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--win); box-shadow: 0 0 8px var(--win);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.45; }
+    }
 
-  .demo-note {
-    margin-top: 12px; font-size: 0.75rem; color: var(--muted);
-    text-align: center;
-  }
+    /* Team switcher */
+    .tabs {
+      display: flex; gap: 8px; margin: 20px 0 8px;
+      background: var(--navy-2); border-radius: 12px; padding: 4px;
+      border: 1px solid var(--border);
+    }
+    .tab {
+      flex: 1; border: 0; background: transparent; color: var(--muted);
+      font: inherit; font-weight: 600; font-size: 0.9rem;
+      padding: 10px 12px; border-radius: 9px; cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .tab:hover { color: var(--white); }
+    .tab.active {
+      background: var(--blue); color: white;
+      box-shadow: 0 4px 14px rgba(30,91,184,0.45);
+    }
+    .team-meta {
+      color: var(--muted); font-size: 0.85rem; margin-bottom: 20px;
+      padding-left: 4px;
+    }
 
-  /* Playlist */
-  .playlist-grid {
-    display: grid; gap: 16px;
-  }
-  @media (min-width: 900px) {
-    .playlist-grid { grid-template-columns: 1fr 1.2fr; align-items: start; }
-  }
+    /* Sections */
+    section { margin-bottom: 28px; }
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 12px; margin-bottom: 12px;
+    }
+    .section-head h2 {
+      font-family: Outfit, sans-serif; font-weight: 700;
+      font-size: 1.15rem; letter-spacing: -0.01em;
+    }
+    .section-head .count {
+      color: var(--muted); font-size: 0.8rem; font-weight: 500;
+    }
 
-  .glass {
-    background: var(--bg-elev);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
-    backdrop-filter: blur(20px);
-    padding: 20px;
-  }
-  .now-playing {
-    display: flex; gap: 14px; align-items: center;
-  }
-  .np-art {
-    width: 64px; height: 64px; border-radius: 12px; flex-shrink: 0;
-    background: linear-gradient(135deg, var(--violet), var(--pink));
-    display: grid; place-items: center; font-size: 1.5rem;
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
-  }
-  .np-info h3 { font-size: 1rem; margin-bottom: 2px; }
-  .np-info p { font-size: 0.8rem; color: var(--muted); }
-  .eq {
-    display: flex; gap: 3px; align-items: flex-end; height: 18px; margin-top: 8px;
-  }
-  .eq span {
-    width: 3px; background: var(--cyan); border-radius: 2px;
-    animation: eq 0.8s ease-in-out infinite alternate;
-  }
-  .eq span:nth-child(1) { height: 40%; animation-delay: 0s; }
-  .eq span:nth-child(2) { height: 80%; animation-delay: 0.15s; }
-  .eq span:nth-child(3) { height: 55%; animation-delay: 0.3s; }
-  .eq span:nth-child(4) { height: 95%; animation-delay: 0.1s; }
-  .eq span:nth-child(5) { height: 35%; animation-delay: 0.25s; }
-  @keyframes eq { to { height: 20%; opacity: 0.6; } }
+    /* Cards */
+    .card-list { display: flex; flex-direction: column; gap: 10px; }
+    .match-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 16px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 8px 16px; align-items: center;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .match-card:hover { border-color: rgba(96,165,250,0.35); }
+    .match-meta {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      font-size: 0.75rem; color: var(--muted); grid-column: 1 / -1;
+    }
+    .pill {
+      background: var(--navy-3); border-radius: 6px;
+      padding: 2px 8px; font-weight: 600; color: var(--ice);
+      letter-spacing: 0.02em;
+    }
+    .pill.home { background: rgba(30,91,184,0.35); color: var(--blue-soft); }
+    .pill.away { background: rgba(148,163,184,0.15); }
+    .match-main {
+      display: flex; flex-direction: column; gap: 2px; min-width: 0;
+    }
+    .match-main .vs {
+      font-weight: 700; font-size: 1.02rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .match-main .comp { font-size: 0.78rem; color: var(--muted); }
+    .score-box {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-width: 72px;
+    }
+    .score {
+      font-family: Outfit, sans-serif; font-weight: 800;
+      font-size: 1.45rem; letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .result-tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-top: 2px;
+      padding: 2px 8px; border-radius: 999px;
+    }
+    .result-tag.W { background: rgba(16,185,129,0.2); color: var(--win); }
+    .result-tag.L { background: rgba(239,68,68,0.2); color: var(--loss); }
+    .result-tag.D { background: rgba(245,158,11,0.2); color: var(--draw); }
+    .result-tag.C { background: rgba(148,163,184,0.2); color: var(--muted); }
+    .kickoff {
+      font-family: Outfit, sans-serif; font-weight: 700;
+      font-size: 1.15rem; color: var(--blue-soft);
+    }
 
-  .spotify-wrap {
-    border-radius: 16px; overflow: hidden;
-    border: 1px solid var(--glass-border);
-    min-height: 352px;
-  }
-  .spotify-wrap iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
+    /* Standings table */
+    .table-wrap {
+      overflow-x: auto; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--card);
+      -webkit-overflow-scrolling: touch;
+    }
+    table.standings {
+      width: 100%; border-collapse: collapse; font-size: 0.88rem;
+      min-width: 520px;
+    }
+    table.standings th {
+      text-align: left; padding: 12px 10px; color: var(--muted);
+      font-weight: 600; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.05em; border-bottom: 1px solid var(--border);
+      background: var(--navy-2);
+    }
+    table.standings th.num, table.standings td.num {
+      text-align: center; font-variant-numeric: tabular-nums;
+    }
+    table.standings td {
+      padding: 11px 10px; border-bottom: 1px solid var(--border);
+    }
+    table.standings tr:last-child td { border-bottom: 0; }
+    table.standings tr.us {
+      background: rgba(30,91,184,0.22);
+    }
+    table.standings tr.us td { font-weight: 600; }
+    table.standings .rank {
+      font-family: Outfit, sans-serif; font-weight: 700;
+      color: var(--blue-soft); width: 36px;
+    }
 
-  /* About + socials */
-  .about-grid {
-    display: grid; gap: 16px;
-  }
-  @media (min-width: 900px) {
-    .about-grid { grid-template-columns: 1.4fr 1fr; }
-  }
-  .about-grid p { color: var(--muted); margin-bottom: 12px; }
-  .about-grid p:last-child { margin-bottom: 0; }
+    .empty {
+      padding: 28px; text-align: center; color: var(--muted);
+      border: 1px dashed var(--border); border-radius: var(--radius);
+      font-size: 0.92rem;
+    }
 
-  .socials { display: flex; flex-direction: column; gap: 10px; }
-  .social {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 16px;
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    text-decoration: none; color: var(--text);
-    transition: background .2s, border-color .2s, transform .15s;
-  }
-  .social:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.22);
-    transform: translateX(4px);
-  }
-  .social .ico {
-    width: 40px; height: 40px; border-radius: 12px;
-    display: grid; place-items: center; font-size: 1.1rem; flex-shrink: 0;
-  }
-  .social.ig .ico { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
-  .social.tt .ico { background: #010101; border: 1px solid #25f4ee; color: #fff; }
-  .social.sp .ico { background: #1db954; }
-  .social .lbl { flex: 1; min-width: 0; }
-  .social .lbl strong { display: block; font-size: 0.9rem; }
-  .social .lbl span { font-size: 0.75rem; color: var(--muted); }
-  .social .arrow { color: var(--muted); font-size: 1.1rem; }
+    /* Footer / sources */
+    footer.source {
+      margin-top: 40px; padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--muted);
+    }
+    footer.source .row {
+      display: flex; flex-wrap: wrap; gap: 8px 20px;
+      align-items: center; margin-bottom: 10px;
+    }
+    .refresh-btn {
+      border: 1px solid var(--border); background: var(--navy-2);
+      color: var(--ice); font: inherit; font-size: 0.8rem; font-weight: 600;
+      padding: 7px 14px; border-radius: 999px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .refresh-btn:hover { border-color: var(--blue-soft); color: white; }
+    .refresh-btn:disabled { opacity: 0.5; cursor: wait; }
+    .status-msg { font-size: 0.78rem; }
+    .status-msg.ok { color: var(--win); }
+    .status-msg.err { color: var(--loss); }
+    .status-msg.info { color: var(--muted); }
 
-  footer {
-    text-align: center; padding: 28px 0 8px;
-    font-size: 0.75rem; color: var(--muted);
-  }
-  footer a { color: var(--cyan); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-</style>
+    .disclaimer {
+      margin-top: 8px; line-height: 1.55;
+    }
+
+    @media (max-width: 520px) {
+      .match-card { padding: 12px; }
+      .score { font-size: 1.25rem; }
+      .logo { width: 52px; height: 52px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="blobs" aria-hidden="true">
-    <div class="blob a"></div>
-    <div class="blob b"></div>
-    <div class="blob c"></div>
-  </div>
-  <div class="noise" aria-hidden="true"></div>
-
   <div class="wrap">
-    <nav>
-      <div class="logo">clara</div>
-      <div class="nav-links">
-        <a href="#vibes">Vibes</a>
-        <a href="#playlist">Playlist</a>
-        <a href="#about">About</a>
-      </div>
-    </nav>
-
     <header class="hero">
-      <div>
-        <div class="badge">Live on sitedebile</div>
-        <h1>Hey, I'm <span class="grad">Clara</span></h1>
-        <p>Short-form vibes, neon nights &amp; playlists on loop. Built for friends — scroll, tap, stay awhile.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#vibes">▶ Watch vibes</a>
-          <a class="btn btn-ghost" href="#playlist">♪ Now playing</a>
+      <div class="hero-top">
+        <img class="logo" src="logo-bluelions.png" alt="Blue Lions Tervuren" width="64" height="64" />
+        <div class="hero-text">
+          <h1>Blue Lions <span>U19 Filles</span></h1>
+          <p class="sub">Hockey · Tervuren · Saison <strong id="season">2026-2027</strong></p>
         </div>
       </div>
-      <aside class="hero-card" aria-label="Clara profile card">
-        <div class="avatar" aria-hidden="true">C</div>
-        <h2>Clara</h2>
-        <div class="tag">@clara · main character energy</div>
-        <p style="color:var(--muted);font-size:0.9rem;">Dark neon aesthetic. Soft chaos. Always on the For You Page (emotionally).</p>
-        <div class="stats">
-          <div class="stat"><strong>∞</strong><span>Vibes</span></div>
-          <div class="stat"><strong>24/7</strong><span>Playlist</span></div>
-          <div class="stat"><strong>100%</strong><span>Main</span></div>
-        </div>
-      </aside>
+      <div class="badges">
+        <span class="badge"><span class="dot" aria-hidden="true"></span> Résultats officiels</span>
+        <span class="badge" id="update-badge">Mise à jour…</span>
+        <span class="badge">Club : Blue Lions Tervuren</span>
+      </div>
     </header>
 
-    <section id="vibes">
+    <div class="tabs" role="tablist" aria-label="Équipes">
+      <button class="tab active" role="tab" data-team="u19g1" aria-selected="true">U19G-1 · Nat. 3 A</button>
+      <button class="tab" role="tab" data-team="u19g2" aria-selected="false">U19G-2 · Reg. 2 F</button>
+    </div>
+    <p class="team-meta" id="team-meta"></p>
+
+    <section aria-labelledby="fixtures-title">
       <div class="section-head">
-        <h2>Video vibes</h2>
-        <span class="hint">Swipe → · muted · looping demos</span>
+        <h2 id="fixtures-title">Prochains matchs</h2>
+        <span class="count" id="fixtures-count"></span>
       </div>
-      <div class="feed" role="list">
-        <article class="vibe-card" role="listitem">
-          <video muted loop playsinline autoplay preload="metadata"
-            poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&q=60"
-            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"></video>
-          <div class="vibe-overlay"></div>
-          <div class="vibe-meta">
-            <span class="chip">demo vibe</span>
-            <h3>Night heat</h3>
-            <p>Sample clip · royalty-free</p>
-          </div>
-        </article>
-        <article class="vibe-card" role="listitem">
-          <video muted loop playsinline autoplay preload="metadata"
-            poster="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=60"
-            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"></video>
-          <div class="vibe-overlay"></div>
-          <div class="vibe-meta">
-            <span class="chip">demo vibe</span>
-            <h3>Escape mode</h3>
-            <p>Sample clip · royalty-free</p>
-          </div>
-        </article>
-        <article class="vibe-card" role="listitem">
-          <video muted loop playsinline autoplay preload="metadata"
-            poster="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&q=60"
-            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"></video>
-          <div class="vibe-overlay"></div>
-          <div class="vibe-meta">
-            <span class="chip">demo vibe</span>
-            <h3>Weekend energy</h3>
-            <p>Sample clip · royalty-free</p>
-          </div>
-        </article>
-        <article class="vibe-card" role="listitem">
-          <video muted loop playsinline autoplay preload="metadata"
-            poster="https://images.unsplash.com/photo-1459749411175-04754421d915?w=400&q=60"
-            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"></video>
-          <div class="vibe-overlay"></div>
-          <div class="vibe-meta">
-            <span class="chip">demo vibe</span>
-            <h3>Soft focus</h3>
-            <p>MDN CC0 sample</p>
-          </div>
-        </article>
-      </div>
-      <p class="demo-note">Not TikTok — public sample / royalty-free demo videos for the feed vibe only.</p>
+      <div class="card-list" id="fixtures"></div>
     </section>
 
-    <section id="playlist">
+    <section aria-labelledby="results-title">
       <div class="section-head">
-        <h2>Playlist</h2>
-        <span class="hint">Spotify embed · official</span>
+        <h2 id="results-title">Résultats récents</h2>
+        <span class="count" id="results-count"></span>
       </div>
-      <div class="playlist-grid">
-        <div class="glass">
-          <div class="now-playing">
-            <div class="np-art" aria-hidden="true">♪</div>
-            <div class="np-info">
-              <h3>Now playing</h3>
-              <p>Today's Top Hits — swap this embed for Clara's playlist anytime.</p>
-              <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-            </div>
-          </div>
-        </div>
-        <div class="spotify-wrap">
-          <iframe
-            style="border-radius:12px"
-            src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0"
-            width="100%"
-            height="352"
-            frameborder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            title="Clara playlist — Spotify embed"></iframe>
-        </div>
+      <div class="card-list" id="results"></div>
+    </section>
+
+    <section aria-labelledby="standings-title">
+      <div class="section-head">
+        <h2 id="standings-title">Classement</h2>
+        <span class="count" id="standings-count"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="standings" id="standings">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Équipe</th>
+              <th class="num">J</th>
+              <th class="num">G</th>
+              <th class="num">N</th>
+              <th class="num">P</th>
+              <th class="num">BP</th>
+              <th class="num">BC</th>
+              <th class="num">Pts</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </section>
 
-    <section id="about">
-      <div class="section-head">
-        <h2>About + links</h2>
-        <span class="hint">Edit social URLs when ready</span>
+    <footer class="source">
+      <div class="row">
+        <button type="button" class="refresh-btn" id="refresh-btn" title="Recharger depuis Hockey Belgium">
+          ↻ Actualiser
+        </button>
+        <span class="status-msg info" id="status-msg"></span>
       </div>
-      <div class="about-grid">
-        <div class="glass">
-          <p>Clara's corner of the internet — a tiny TikTok-energy site for sharing vibes with friends. Dark mode forever. Gradients optional but preferred.</p>
-          <p>Replace the social placeholders below with real profiles. Swap the Spotify playlist iframe <code style="color:var(--cyan);font-size:0.85em">src</code> for any public playlist.</p>
-          <p style="margin-top:16px;font-size:0.85rem;">Made with neon &amp; HTML · hosted on <a href="https://sitedebile.fr" style="color:var(--pink)">sitedebile.fr</a></p>
-        </div>
-        <div class="socials">
-          <a class="social ig" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-            <span class="ico" aria-hidden="true">◎</span>
-            <span class="lbl"><strong>Instagram</strong><span>@clara — placeholder</span></span>
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="social tt" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
-            <span class="ico" aria-hidden="true">♪</span>
-            <span class="lbl"><strong>TikTok</strong><span>@clara — placeholder</span></span>
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="social sp" href="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" target="_blank" rel="noopener noreferrer">
-            <span class="ico" aria-hidden="true">♫</span>
-            <span class="lbl"><strong>Spotify</strong><span>Playlist · open in app</span></span>
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p>clara.sitedebile.fr · vibes only · <a href="https://github.com/plosson/clara-sitedebile">source</a></p>
+      <p><strong>Dernière mise à jour :</strong> <span id="last-updated">—</span></p>
+      <p class="disclaimer">
+        Source officielle :
+        <a href="https://hockey.be/fr/competition/calendrier-resultats-et-classements/" target="_blank" rel="noopener">Hockey Belgium — Calendrier, résultats &amp; classements</a>
+        ·
+        <a href="https://hockey.be/nl/competitie/kalender-resultaten-en-rangschikkingen/" target="_blank" rel="noopener">NL</a>
+        · Club :
+        <a href="https://www.bluelions.be/" target="_blank" rel="noopener">bluelions.be</a>
+        (Tervuren, Belgique — pas le club américain Blue Lions FHC).
+        Données via l’API publique Sportlink de hockey.be. Les scores ne sont jamais inventés ;
+        en cas d’échec du rafraîchissement live, le snapshot embarqué est affiché.
+      </p>
     </footer>
   </div>
 
   <script>
-    // Pause off-screen videos to save bandwidth; resume when visible
-    (function () {
-      const videos = document.querySelectorAll('.vibe-card video');
-      if (!('IntersectionObserver' in window)) return;
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          const v = e.target;
-          if (e.isIntersecting) {
-            v.play().catch(() => {});
+  (function () {
+    const API = "https://hockey.be/wp-json/sportlink-api/cached";
+    const TEAMS_CFG = {
+      u19g1: { poolId: "12094", teamCode: "U19G-1", label: "U19 Filles 1", competition: "U19 Girls — Nationale 3 A" },
+      u19g2: { poolId: "12202", teamCode: "U19G-2", label: "U19 Filles 2", competition: "U19 Girls — Régionale 2 F" },
+    };
+
+    let DATA = null;
+    let current = "u19g1";
+
+    const $ = (id) => document.getElementById(id);
+
+    function stripHtml(s) {
+      if (typeof s !== "string") return s;
+      const tmp = document.createElement("div");
+      tmp.innerHTML = s.replace(/<br\s*\/?>/gi, " · ");
+      return (tmp.textContent || "").replace(/\s+/g, " ").replace(/ Outdoor Semaine/g, "").trim();
+    }
+
+    function parseTeam(cell) {
+      const t = stripHtml(cell);
+      let m = t.match(/^(.*?)\s*[·•]?\s*(U\d+[A-Z]?-\d+)\s*$/);
+      if (m) return { club: m[1].replace(/[·•]/g, "").trim(), code: m[2] };
+      m = t.match(/^(.*?)\s+(U\d+[A-Z]?-\d+)\s*$/);
+      if (m) return { club: m[1].trim(), code: m[2] };
+      return { club: t, code: "" };
+    }
+
+    function parseScore(cell) {
+      const t = stripHtml(cell);
+      if (/Non-joué|arrêté|Not played/i.test(t)) return { hs: null, as: null, status: "cancelled" };
+      const m = t.match(/(\d+)\s*[-–]\s*(\d+)/);
+      if (m) return { hs: +m[1], as: +m[2], status: "played" };
+      return { hs: null, as: null, status: "unknown" };
+    }
+
+    function parseProgDate(cell) {
+      const t = stripHtml(cell);
+      const m = t.match(/^(\d{2}\/\d{2}\/\d{4})(?:\s+(.*))?/);
+      if (!m) return { date: t, pitch: "", dt: null };
+      const parts = m[1].split("/");
+      const dt = new Date(+parts[2], +parts[1] - 1, +parts[0]);
+      return { date: m[1], pitch: (m[2] || "").replace(/^[·•\s]+/, "").trim(), dt };
+    }
+
+    function todayStart() {
+      const d = new Date();
+      d.setHours(0, 0, 0, 0);
+      return d;
+    }
+
+    function buildTeamFromApi(cfg, resultsRaw, programRaw, standingRaw) {
+      const code = cfg.teamCode;
+      const results = [];
+      const seenR = new Set();
+      for (const row of resultsRaw.data || []) {
+        if (row.length < 8) continue;
+        const home = parseTeam(row[3]);
+        const away = parseTeam(row[7]);
+        const usHome = home.code === code && /Blue Lions/i.test(home.club);
+        const usAway = away.code === code && /Blue Lions/i.test(away.club);
+        if (!usHome && !usAway) continue;
+        const { hs, as: aws, status } = parseScore(row[5]);
+        const key = [row[0], row[1], home.code, away.code, hs, aws].join("|");
+        if (seenR.has(key)) continue;
+        seenR.add(key);
+        let result = null, ourScore = null, oppScore = null;
+        if (status === "played" && hs != null) {
+          if (usHome) {
+            result = hs > aws ? "W" : hs < aws ? "L" : "D";
+            ourScore = hs; oppScore = aws;
           } else {
-            v.pause();
+            result = aws > hs ? "W" : aws < hs ? "L" : "D";
+            ourScore = aws; oppScore = hs;
           }
+        }
+        results.push({
+          date: stripHtml(row[0]),
+          time: stripHtml(row[1]).slice(0, 5),
+          competition: stripHtml(row[2]),
+          home: (home.club + " " + home.code).trim(),
+          away: (away.club + " " + away.code).trim(),
+          homeScore: hs, awayScore: aws, status,
+          usHome, opponent: usHome ? (away.club + " " + away.code).trim() : (home.club + " " + home.code).trim(),
+          result, ourScore, oppScore,
+          venue: usHome ? "Domicile" : "Extérieur",
         });
-      }, { threshold: 0.35 });
-      videos.forEach((v) => io.observe(v));
-    })();
+      }
+      results.sort((a, b) => {
+        const pa = a.date.split("/"), pb = b.date.split("/");
+        return new Date(+pb[2], +pb[1]-1, +pb[0]) - new Date(+pa[2], +pa[1]-1, +pa[0]);
+      });
+
+      const fixtures = [];
+      const seenF = new Set();
+      const today = todayStart();
+      for (const row of programRaw.data || []) {
+        if (row.length < 7) continue;
+        const { date, pitch, dt } = parseProgDate(row[0]);
+        const home = parseTeam(row[3]);
+        const away = parseTeam(row[6]);
+        const usHome = home.code === code && /Blue Lions/i.test(home.club);
+        const usAway = away.code === code && /Blue Lions/i.test(away.club);
+        if (!usHome && !usAway) continue;
+        if (dt && dt < today) continue;
+        const key = [date, row[1], home.code, away.code].join("|");
+        if (seenF.has(key)) continue;
+        seenF.add(key);
+        fixtures.push({
+          date,
+          time: stripHtml(row[1]).slice(0, 5),
+          competition: stripHtml(row[2]),
+          home: (home.club + " " + home.code).trim(),
+          away: (away.club + " " + away.code).trim(),
+          usHome,
+          opponent: usHome ? (away.club + " " + away.code).trim() : (home.club + " " + home.code).trim(),
+          venue: usHome ? "Domicile" : "Extérieur",
+          pitch,
+        });
+      }
+      fixtures.sort((a, b) => {
+        const pa = a.date.split("/"), pb = b.date.split("/");
+        return new Date(+pa[2], +pa[1]-1, +pa[0], +(a.time||"0").split(":")[0], +(a.time||"0").split(":")[1]||0)
+             - new Date(+pb[2], +pb[1]-1, +pb[0], +(b.time||"0").split(":")[0], +(b.time||"0").split(":")[1]||0);
+      });
+
+      const standings = (standingRaw.data || []).map((row) => ({
+        rank: row[0], team: stripHtml(row[1]), played: row[2], won: row[3],
+        lost: row[4], draw: row[5], gf: row[6], ga: row[7], points: row[8],
+        isUs: /Blue Lions/i.test(String(row[1])),
+      }));
+
+      return {
+        id: cfg.poolId === "12094" ? "u19g1" : "u19g2",
+        name: "Blue Lions " + code,
+        short: code,
+        label: cfg.label,
+        competition: cfg.competition,
+        competitionShort: cfg.poolId === "12094" ? "Nat. 3 A" : "Reg. 2 F",
+        poolId: cfg.poolId,
+        teamCode: code,
+        results, fixtures, standings,
+      };
+    }
+
+    async function fetchEndpoint(endpoint, poolId) {
+      const url = new URL(API);
+      url.searchParams.set("lang", "fr");
+      url.searchParams.set("endpoint", endpoint);
+      url.searchParams.set("poolid", poolId);
+      url.searchParams.set("subpool", "A");
+      if (endpoint === "program" || endpoint === "results") {
+        url.searchParams.set("from", "2026-08-01");
+        url.searchParams.set("to", "2027-06-30");
+      }
+      const res = await fetch(url.toString(), { credentials: "omit" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }
+
+    async function liveRefresh() {
+      const btn = $("refresh-btn");
+      const msg = $("status-msg");
+      btn.disabled = true;
+      msg.className = "status-msg info";
+      msg.textContent = "Chargement depuis Hockey Belgium…";
+      try {
+        const teams = {};
+        for (const [id, cfg] of Object.entries(TEAMS_CFG)) {
+          const [results, program, standing] = await Promise.all([
+            fetchEndpoint("results", cfg.poolId),
+            fetchEndpoint("program", cfg.poolId),
+            fetchEndpoint("standing", cfg.poolId),
+          ]);
+          teams[id] = buildTeamFromApi(cfg, results, program, standing);
+        }
+        const now = new Date();
+        DATA.teams = teams;
+        DATA.meta.lastUpdated = now.toLocaleString("fr-BE", {
+          timeZone: "Europe/Brussels",
+          dateStyle: "short",
+          timeStyle: "short",
+        }) + " (live)";
+        DATA.meta.lastUpdatedIso = now.toISOString();
+        DATA.meta.liveRefresh = true;
+        render();
+        msg.className = "status-msg ok";
+        msg.textContent = "Données live mises à jour.";
+      } catch (e) {
+        console.warn("Live refresh failed", e);
+        msg.className = "status-msg err";
+        msg.textContent = "Rafraîchissement live impossible — snapshot affiché. " + (e.message || "");
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function resultLabel(r) {
+      if (r.status === "cancelled") return { cls: "C", text: "Annulé" };
+      if (r.result === "W") return { cls: "W", text: "Victoire" };
+      if (r.result === "L") return { cls: "L", text: "Défaite" };
+      if (r.result === "D") return { cls: "D", text: "Nul" };
+      return { cls: "C", text: "—" };
+    }
+
+    function renderFixtures(list) {
+      const el = $("fixtures");
+      $("fixtures-count").textContent = list.length ? list.length + " match" + (list.length > 1 ? "s" : "") : "";
+      if (!list.length) {
+        el.innerHTML = '<div class="empty">Aucun match à venir dans le calendrier officiel pour le moment.</div>';
+        return;
+      }
+      el.innerHTML = list.map((f) => `
+        <article class="match-card">
+          <div class="match-meta">
+            <span class="pill">${f.date}</span>
+            <span class="pill ${f.usHome ? "home" : "away"}">${f.venue}</span>
+            ${f.pitch ? `<span class="pill">${f.pitch}</span>` : ""}
+          </div>
+          <div class="match-main">
+            <div class="vs">vs ${escapeHtml(f.opponent)}</div>
+            <div class="comp">${escapeHtml(f.competition)}</div>
+          </div>
+          <div class="score-box">
+            <div class="kickoff">${escapeHtml(f.time || "—")}</div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderResults(list) {
+      const el = $("results");
+      $("results-count").textContent = list.length ? list.length + " résultat" + (list.length > 1 ? "s" : "") : "";
+      if (!list.length) {
+        el.innerHTML = '<div class="empty">Aucun résultat publié pour cette équipe.</div>';
+        return;
+      }
+      el.innerHTML = list.map((r) => {
+        const tag = resultLabel(r);
+        const score = r.status === "played" && r.ourScore != null
+          ? `${r.ourScore} – ${r.oppScore}`
+          : "—";
+        return `
+        <article class="match-card">
+          <div class="match-meta">
+            <span class="pill">${r.date}</span>
+            <span class="pill ${r.usHome ? "home" : "away"}">${r.venue}</span>
+          </div>
+          <div class="match-main">
+            <div class="vs">vs ${escapeHtml(r.opponent)}</div>
+            <div class="comp">${escapeHtml(r.competition)}</div>
+          </div>
+          <div class="score-box">
+            <div class="score">${score}</div>
+            <span class="result-tag ${tag.cls}">${tag.text}</span>
+          </div>
+        </article>`;
+      }).join("");
+    }
+
+    function renderStandings(list) {
+      const tbody = $("standings").querySelector("tbody");
+      $("standings-count").textContent = list.length ? list.length + " équipes" : "";
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px">Classement indisponible</td></tr>';
+        return;
+      }
+      tbody.innerHTML = list.map((s) => `
+        <tr class="${s.isUs ? "us" : ""}">
+          <td class="rank">${s.rank}</td>
+          <td>${escapeHtml(s.team)}${s.isUs ? " ★" : ""}</td>
+          <td class="num">${s.played}</td>
+          <td class="num">${s.won}</td>
+          <td class="num">${s.draw}</td>
+          <td class="num">${s.lost}</td>
+          <td class="num">${s.gf}</td>
+          <td class="num">${s.ga}</td>
+          <td class="num"><strong>${s.points}</strong></td>
+        </tr>
+      `).join("");
+    }
+
+    function escapeHtml(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function render() {
+      if (!DATA) return;
+      const team = DATA.teams[current];
+      if (!team) return;
+      $("season").textContent = DATA.meta.season || "2026-2027";
+      $("team-meta").textContent = `${team.name} · ${team.competition}`;
+      $("last-updated").textContent = DATA.meta.lastUpdated || "—";
+      $("update-badge").textContent = "Maj : " + (DATA.meta.lastUpdated || "—");
+      renderFixtures(team.fixtures || []);
+      renderResults(team.results || []);
+      renderStandings(team.standings || []);
+    }
+
+    document.querySelectorAll(".tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((b) => {
+          b.classList.toggle("active", b === btn);
+          b.setAttribute("aria-selected", b === btn ? "true" : "false");
+        });
+        current = btn.dataset.team;
+        render();
+      });
+    });
+
+    $("refresh-btn").addEventListener("click", liveRefresh);
+
+    fetch("data/blue-lions-u19g.json")
+      .then((r) => r.json())
+      .then((d) => {
+        DATA = d;
+        current = d.defaultTeam || "u19g1";
+        render();
+        $("status-msg").className = "status-msg info";
+        $("status-msg").textContent = "Snapshot chargé — actualisation live disponible.";
+        // Auto-try live refresh once (non-blocking)
+        setTimeout(() => liveRefresh(), 400);
+      })
+      .catch((e) => {
+        $("fixtures").innerHTML = '<div class="empty">Impossible de charger les données.</div>';
+        $("status-msg").className = "status-msg err";
+        $("status-msg").textContent = String(e);
+      });
+  })();
   </script>
 </body>
 </html>

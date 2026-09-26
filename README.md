@@ -1,36 +1,33 @@
-# Clara · vibes
+# Blue Lions U19 Filles — Résultats
 
-TikTok-style neon site for Clara — dark Gen-Z aesthetic, video vibes feed, Spotify playlist embed.
+Tableau de résultats live pour les **Blue Lions U19 Filles** (club belge Blue Lions Tervuren — *pas* le Blue Lions FHC de Pennsylvanie).
 
-**Live:** https://clara.sitedebile.fr
+**Live :** https://clara.sitedebile.fr
 
-## What's included
+## Contenu
 
-- **Hero** — Clara intro + profile glass card
-- **Video vibes** — vertical muted looping HTML5 demos (public/royalty-free samples, not TikTok)
-- **Playlist** — official Spotify embed (swap the playlist ID anytime)
-- **About + socials** — Instagram / TikTok / Spotify placeholders
+- **U19G-1** — Nationale 3 A (saison 2026-2027)
+- **U19G-2** — Régionale 2 F
+- Prochains matchs, résultats récents, classement
+- Snapshot JSON embarqué + rafraîchissement client via l’API publique Sportlink de hockey.be (CORS autorisé pour ce domaine)
 
-## Redeploy (SiteIO)
+## Sources
 
-SiteIO must be logged in to sitedebile.fr (`siteio status`).
+- https://hockey.be/fr/competition/calendrier-resultats-et-classements/
+- https://hockey.be/wp-json/sportlink-api/cached (program / results / standing)
+- Club : https://www.bluelions.be/ — Sportlink club id `CC6VK53`
+
+## Données
+
+Fichier snapshot : `data/blue-lions-u19g.json`  
+Les scores ne sont jamais inventés. En cas d’échec API, le snapshot + horodatage « Dernière mise à jour » restent affichés.
+
+## Déploiement (SiteIO)
 
 ```bash
 siteio sites deploy /workspace/clara-site -n clara
 ```
 
-Or from this folder:
-
-```bash
-siteio sites deploy . -n clara
-```
-
-## Edit tips
-
-- Social links: update the `href`s in the About section of `index.html`
-- Spotify: change the iframe `src` playlist ID (`37i9dQZF1DXcBWIGoYBM5M` → yours)
-- Videos: replace the `<video src="...">` URLs with other royalty-free clips
-
 ## Stack
 
-Static HTML/CSS/JS only. Hosted via SiteIO on sitedebile.fr.
+HTML/CSS/JS statique. Hébergé via SiteIO sur sitedebile.fr.
