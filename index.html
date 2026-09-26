@@ -783,17 +783,16 @@
 
     $("refresh-btn").addEventListener("click", liveRefresh);
 
+    (function showQrOnlyInTesla() {
+      const el = document.getElementById("qr-banner");
+      if (!el) return;
+      const ua = String(navigator.userAgent || "");
+      if (/tesla/i.test(ua)) el.classList.add("is-tesla");
+      else el.classList.remove("is-tesla");
+    })();
+
     Promise.all([
       fetch("data/blue-lions-u19g.json").then((r) => r.json()),
-      // QR banner: Tesla in-car browser only (avoid flash on phones — CSS defaults to display:none)
-      (function showQrOnlyInTesla() {
-        const el = document.getElementById("qr-banner");
-        if (!el) return;
-        const ua = String(navigator.userAgent || "");
-        if (/tesla/i.test(ua)) el.classList.add("is-tesla");
-        else el.classList.remove("is-tesla");
-      })();
-
       fetch("data/venues.json").then((r) => r.json()).catch(() => ({ byClub: {}, pitchPrefixToClub: {} }))
     ])
       .then(([d, venues]) => {
